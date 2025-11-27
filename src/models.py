@@ -29,7 +29,7 @@ class Comment(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     comment_text: Mapped[str] = mapped_column(String(500), nullable=False)
     author_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=True)
-    post_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=True)
+    post_id: Mapped[int] = mapped_column(ForeignKey("post.id"), nullable=True)
 
     def serialize(self):
         return {
@@ -45,7 +45,6 @@ class Post(db.Model):
         return {
             "user_id": self.user_id,
             
-
         }
 class Follower(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
